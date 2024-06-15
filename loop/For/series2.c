@@ -6,10 +6,7 @@ int n;
 printf("Enter a number : ");
 scanf("%d",&n);
 int sum = 0;
-
 int fact=1;
-
-
 for(int i = 1;i<=n;i++){
    fact=fact*i;
    sum=sum+fact;

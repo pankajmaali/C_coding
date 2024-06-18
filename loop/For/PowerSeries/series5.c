@@ -15,9 +15,11 @@ int main() {
        power=power*m;
        dev=j/power;
        sum=sum+dev;
+       printf("%d/%d^%d",j,m,i);
+       if(i<n)printf(" + ");
        
    }
-   printf("%f",sum);
+   printf(" = %f",sum);
 
     return 0;
 }

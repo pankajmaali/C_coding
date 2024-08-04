@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+</head>
+<body>
+    <h1>Welcome to the game</h1>
+    <button onclick="startGame()">Start Game</button>
+    <button onclick="endGame()">End Game</button>
+
+    <div id="game" style="display: none;">
+        <div id="question"></div>
+        <div id="options"></div>
+        <button onclick="nextQuestion()">Next</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        let questions = [
+            { question: "Which one is the first web browser in 1990?", options: ["Internal Explorer", "Mosaic", "Mozilla", "Nexus"], correct: 4 },
+            { question: "Who is the father of C language?", options: ["Steve Jobs", "James Gosling", "Dennis Ritchie", "Rasmus Lerdorf"], correct: 3 },
+            { question: "Which of the following is not a valid C variable name?", options: ["int number;", "float rate;", "int variable_count;", "int $main;"], correct: 4 },
+            { question: "Which is a valid C expression?", options: ["int my_num = 100,000;", "int my_num = 100000;", "int my num = 1000;", "int $my_num = 10000;"], correct: 2 },
+            { question: "What is an example of iteration in C?", options: ["for", "while", "do-while", "all of the mentioned"], correct: 4 },
+            { question: "What is #include <stdio.h>?", options: ["Preprocessor directive", "Inclusion directive", "File inclusion directive", "None of the mentioned"], correct: 1 }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function startGame() {
+            document.getElementById("game").style.display = "block";
+            displayQuestion();
+        }
+
+        function endGame() {
+            document.getElementById("game").style.display = "none";
+            alert("The game has ended");
+        }
+
+        function displayQuestion() {
+            let questionElement = document.getElementById("question");
+            let optionsElement = document.getElementById("options");
+            let resultElement = document.getElementById("result");
+
+            questionElement.innerText = questions[currentQuestion].question;
+            optionsElement.innerHTML = "";
+            resultElement.innerHTML = "";
+
+            questions[currentQuestion].options.forEach((option, index) => {
+                let optionElement = document.createElement("div");
+                optionElement.innerHTML = `<input type="radio" name="option" value="${index + 1}"> ${option}<br>`;
+                optionsElement.appendChild(optionElement);
+            });
+        }
+
+        function nextQuestion() {
+            let selectedOption = document.querySelector('input[name="option"]:checked');
+
+            if (!selectedOption) {
+                alert("Please select an option");
+                return;
+            }
+
+            let resultElement = document.getElementById("result");
+
+            if (parseInt(selectedOption.value) === questions[currentQuestion].correct) {
+                score += 5;
+                resultElement.innerHTML = "Correct Answer!<br>You have scored " + score + " points.";
+            } else {
+                resultElement.innerHTML = "Wrong Answer!<br>You have scored " + score + " points.";
+            }
+
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                displayQuestion();
+            } else {
+                alert("You have completed the game! Your total score is: " + score);
+                document.getElementById("game").style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

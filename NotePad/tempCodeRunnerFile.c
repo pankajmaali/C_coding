@@ -1,1 +1,10 @@
-
+ printf("Enter a First Name : ");
+//    scanf("%s",&First_Name);
+//    printf("Enter a Last Name : ");
+//    scanf("%s",&Last_name);
+//    printf("Enter a Address : ");
+//    scanf("%s",&Address);
+//    printf("Enter a Roll Number : ");
+//    scanf("%d",&Roll_number);
+//    printf("Enter a class : ");
+//    scanf("%d",&class);
